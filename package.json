@@ -7,7 +7,7 @@
     "test": "npm test"
   },
   "author": "jos <josmasflores@gmail.com>",
-  "license": "MIT",
+  "license": "MPL2",
   "dependencies": {
     "hapi": "13.5.0",
     "inert": "4.0.1"
