@@ -1,0 +1,15 @@
+{
+  "name": "dublin_maker_map",
+  "version": "0.0.1",
+  "description": "showing locations for Dublin Maker 2016",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "jos <josmasflores@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "13.5.0",
+    "inert": "4.0.1"
+  }
+}
