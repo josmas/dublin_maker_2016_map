@@ -4,6 +4,7 @@
   "description": "showing locations for Dublin Maker 2016",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon",
     "test": "npm test"
   },
   "author": "jos <josmasflores@gmail.com>",
@@ -11,5 +12,8 @@
   "dependencies": {
     "hapi": "13.5.0",
     "inert": "4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "1.9.2"
   }
 }
