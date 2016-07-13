@@ -13,6 +13,16 @@ server.route({
   }
 });
 
+server.route({
+  method: ['PUT', 'POST'],
+  path: '/maprequest',
+  handler: function (request, reply) {
+      console.log(request.payload);
+      //TODO (jos) tokenize and push to DB
+      reply('Done');
+  }
+});
+
 server.register(require('inert'), (err) => {
 
   if (err) {
