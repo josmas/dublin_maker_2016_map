@@ -12,4 +12,34 @@ $(function(){
     accessToken: 'pk.eyJ1Ijoiam9zbWFzZmxvcmVzIiwiYSI6ImNpcW1ja2kzejAwMWlodG1hbTFrc2Iwdm8ifQ._jzG76JQzFERSM1V2RhqLA'
   }).addTo(mymap);
 
+  //TODO (jos) Uncomment when ready.
+  // var markerRequestInterval = setInterval(requestMarkers, 5000);
+
+  function requestMarkers() {
+    console.log("Querying for markers");
+    $.get("/markers", function(data, status){
+      console.log("Status: " + status);
+      if (status === "success") createMarkers(data);
+    });
+  }
+  requestMarkers();
+
+  function createMarkers(markers){
+    console.log("Markers: " + JSON.stringify(markers));
+
+    markers.forEach(addMarker);
+
+    function addMarker(mark){
+      console.log('addMarker called with: ' + mark);
+      var customIcon = L.icon({
+        iconUrl: 'images/' + mark.pic,
+        iconSize: [25, 25], // size of the icon
+        iconAnchor: [20, 8], // point of the icon which will correspond to marker's location
+        popupAnchor: [-3, -3] // point from which the popup should open relative to the iconAnchor
+      });
+      L.marker([mark.lat, mark.lng], {icon: customIcon}).addTo(mymap).bindPopup("I am " + mark.name);
+    }
+  }
+
+
 });
