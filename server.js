@@ -1,6 +1,8 @@
 'use strict';
 
 const Hapi = require('hapi');
+const r = require('rethinkdb');
+const db = require('./db_calls');
 
 const server = new Hapi.Server();
 server.connection({ port: 3000 });
@@ -41,9 +43,16 @@ server.route({
       pic = payload.split(' : ')[3];
     }
 
-    //TODO (jos) Push to DB
-
-    console.log(lat + ' '  + lng + ' ' + name + ' ' + pic);
+    var currentMarker = {
+      lat: lat,
+      lng: lng,
+      name: name,
+      pic: pic
+    };
+    db.storeInDB(currentMarker, function(err, result){
+      if (err) return console.log(err); //TODO (jos) Do something with this
+      console.log(result); //TODO (jos) probably all to be done with the result.
+    });
     reply('Done');
   }
 });
@@ -66,10 +75,18 @@ server.register(require('inert'), (err) => {
   });
 });
 
+var connection = null;
 server.start((err) => {
 
   if (err) {
     throw err;
   }
-  console.log('Server running at:', server.info.uri);
+
+  //TODO (jos) make host an ENV variable
+  r.connect( {host: '192.168.99.100', port: 28015}, function(err, conn) {
+    if (err) throw err;
+    connection = conn;
+    db.setConnection(connection);
+    console.log('Server running at:', server.info.uri);
+  })
 });
