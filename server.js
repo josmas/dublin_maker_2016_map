@@ -15,6 +15,21 @@ server.route({
   }
 });
 
+/**
+* harcoded data for now; read from the DB.
+*/
+server.route({
+  method: 'GET',
+  path: '/markers',
+  handler: function (request, reply) {
+    reply([
+      {lat: 53.384635499999995, lng: -6.50, name: 'jos', pic: 'male_1.png'},
+      {lat: 53.384635499999995, lng: -6.60, name: 'jules', pic: 'female_1.png'},
+      {lat: 53.384635499999995, lng: -6.62, name: 'anna', pic: 'female_4.png'}
+    ]);
+  }
+});
+
 server.route({
   method: ['PUT', 'POST'],
   path: '/maprequest',
