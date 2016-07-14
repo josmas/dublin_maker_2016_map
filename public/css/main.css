@@ -6,3 +6,7 @@ html {
 	font: inherit;
 	vertical-align: baseline;
 }
+
+#mapid {
+  height: 780px;
+}

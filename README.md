@@ -20,5 +20,8 @@ a real DB, so an instance has to be available. `npm test` runs all tets.
 
 Run `node createDB.js` to create the DB and table that the tests expect.
 
+>> note: The idea of using rethinkDB was to use its facilities to stream changes,
+but it needs to be proxied through websockets or similar, so I am not doing that
+(at least) for now. Will pull from the front end on a timer to an endpoint.
 
 Jos, July 2016
