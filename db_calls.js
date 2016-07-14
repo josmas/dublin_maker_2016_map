@@ -29,10 +29,20 @@ function storeInDB(marker, cb) {
     console.log(JSON.stringify(result, null, 2));
     cb(null, 'all seems good');
   })
+}
 
+function readMarkers(cb) {
+  r.db('jos').table('markers').run(connection, function(err, cursor) {
+    if (err) return cb(err);
+    cursor.toArray(function(err, result) {
+        if (err) return cb(err);
+        cb(null, result);
+    });
+});
 }
 
 module.exports = {
   setConnection: setConnection,
-  storeInDB: storeInDB
+  storeInDB: storeInDB,
+  readMarkers: readMarkers
 }

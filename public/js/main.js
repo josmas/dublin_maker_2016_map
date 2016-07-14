@@ -32,12 +32,14 @@ $(function(){
   requestMarkers();
 
   function createMarkers(markers){
-    console.log("Markers: " + JSON.stringify(markers));
 
     markers.forEach(addMarker);
-
     function addMarker(mark){
       console.log('addMarker called with: ' + mark);
+      if (!mark.lat || !mark.lng || !mark.name || !mark.pic) {
+        console.log('Not enough info to show the Marker');
+        return;
+      }
       //TODO (jos) could create 8 fixed icons and reuse them.
       var customIcon = L.icon({
         iconUrl: 'images/' + mark.pic,
