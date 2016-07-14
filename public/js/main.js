@@ -17,9 +17,7 @@ $(function(){
   var markerRequestInterval = setInterval(requestMarkers, 5000);
 
   function requestMarkers() {
-    console.log("Querying for markers");
     $.get("/markers", function(data, status){
-      console.log("Status: " + status);
       if (status === "success") {
         allMarkers.forEach(function(mark){
           mymap.removeLayer(mark);
@@ -35,7 +33,6 @@ $(function(){
 
     markers.forEach(addMarker);
     function addMarker(mark){
-      console.log('addMarker called with: ' + mark);
       if (!mark.lat || !mark.lng || !mark.name || !mark.pic) {
         console.log('Not enough info to show the Marker');
         return;
